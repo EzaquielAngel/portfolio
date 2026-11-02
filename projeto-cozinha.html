@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Controle de Estoque para Restaurante | Gabriel Cardoso</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ANIMAÇÃO DE ENTRADA: PORTÕES DO INFERNO -->
+  <div id="gate-overlay" class="gate-overlay">
+    <div class="gate-left"></div>
+    <div class="gate-right"></div>
+    <div class="gate-lock">
+      <div class="sigil-emblem">
+        <span class="sigil-core">🜏</span>
+      </div>
+      <span class="lock-text">DESVENDANDO MÓDULO BACK-END</span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">⛤ Voltar ao Grimório</a>
+  </header>
+
+  <main class="container section">
+    <span class="badge-tag">Full-Stack &bull; Banco de Dados Relacional &bull; Node.js & MySQL</span>
+    
+    <h1 style="font-size: 2.3rem; margin: 1rem 0; color: #fff;">Sistema de Controle de Estoque para Restaurante (Cozinha Japonesa)</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem; line-height: 1.6;">
+      Uma solução estruturada do zero para resolver um dos maiores gargalos operacionais no setor de gastronomia: o desperdício de insumos, a falta de rastreabilidade e a desatualização de inventário em tempo real.
+    </p>
+
+    <!-- Seção de Demonstração: Modelo Relacional DER / MER -->
+    <div class="card" style="margin-bottom: 2.5rem; text-align: center; padding: 1.5rem;">
+      <h3 style="font-family: var(--font-mono); color: var(--accent-blood); margin-bottom: 1rem;">// 01. A Planta Baixa dos Dados (Modelagem Relacional DER / MER)</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.6;">
+        Antes de escrever qualquer linha de código de programação, o projeto exigiu uma arquitetura rigorosa de banco de dados. O diagrama abaixo demonstra o mapeamento lógico e conceitual que garante que nenhuma informação fique solta ou duplicada. Cada tabela cumpre um papel crítico no ecossistema da cozinha.
+      </p>
+      <img src="assets/cozinha-mer.png" alt="Diagrama DER do Sistema de Cozinha" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 4px; border: 1px solid var(--border-subtle);" onerror="this.src='https://via.placeholder.com/800x450/121017/990000?text=Adicione+a+imagem+do+diagrama+DER+na+pasta+assets'">
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">[ Arquitetura relacional interligando Pratos, Cozinheiros, Ingredientes, Receitas e Histórico de Preparo ]</p>
+    </div>
+
+    <!-- Seção de Demonstração: Painel da Aplicação -->
+    <div class="card" style="margin-bottom: 2.5rem; text-align: center; padding: 1.5rem;">
+      <h3 style="font-family: var(--font-mono); color: var(--accent-blood); margin-bottom: 1rem;">// 02. O Painel de Controle Operacional (Interface & Integração)</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.6;">
+        A interface foi desenhada para ser limpa, objetiva e funcional. O painel interage de forma síncrona com o servidor, permitindo que a equipe visualize instantaneamente os pratos disponíveis no cardápio e o status atual do estoque de cada ingrediente base.
+      </p>
+      <img src="assets/cozinha-painel.png" alt="Painel do Controle de Cozinha Japonesa" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 4px; border: 1px solid var(--border-subtle);" onerror="this.src='https://via.placeholder.com/800x450/121017/990000?text=Adicione+o+print+do+painel+na+pasta+assets'">
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">[ Painel web integrado via Node.js e MySQL para monitoramento de pratos e inventário de insumos ]</p>
+    </div>
+
+    <!-- Exposição detalhada em linguagem acessível -->
+    <div class="card" style="margin-bottom: 2.5rem;">
+      <h2 style="margin-bottom: 1rem;">// 03. O Problema Real e a Solução Aplicada</h2>
+      <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem;">
+        Em restaurantes de culinária japonesa, a precisão no manuseio de ingredientes frescos (como peixes nobres e vegetais específicos) é vital. Sem um sistema centralizado, os estabelecimentos sofrem com perdas financeiras por desperdício ou falta de insumos no meio do expediente. 
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem;">
+        Este software foi construído para atuar como o cérebro logístico da cozinha. Através dele, cada prato cadastrado está diretamente vinculado à sua ficha técnica (receita). Quando um prato é produzido, o sistema sabe exatamente quais ingredientes e em que quantidades foram consumidos do estoque geral.
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.8;">
+        Além disso, o registro de quem preparou o prato (cozinheiros) garante total responsabilidade operacional e histórico auditável dentro do restaurante.
+      </p>
+    </div>
+
+    <!-- Grid Detalhado de Engenharia e Banco de Dados -->
+    <div class="skills-grid" style="margin-bottom: 2.5rem;">
+      <div class="skill-category">
+        <h3>A Estrutura do Banco de Dados</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6;">
+          O coração deste projeto é a modelagem relacional. Utilizando <strong>MySQL e SQL</strong>, criei tabelas perfeitamente normalizadas que conversam entre si através de chaves primárias e estrangeiras:
+        </p>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.8rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.5rem;"><strong>Pratos & Ingredientes:</strong> Armazenam o catálogo base de produtos e itens em estoque.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Cozinheiros:</strong> Guarda registros da equipe e seus níveis de experiência.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Receitas:</strong> A ponte inteligente que define a quantidade exata de cada ingrediente necessária para montar um prato.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Preparo:</strong> O histórico transacional que audita a produção diária.</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>A Tecnologia por Trás (Back-End)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6;">
+          Para dar vida ao banco de dados e exibi-lo na web, estruturei a aplicação utilizando tecnologias modernas e focadas em desempenho:
+        </p>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.8rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.5rem;"><strong>Node.js & Express:</strong> Responsáveis por criar o servidor e estruturar as rotas de comunicação de forma organizada.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Conexão Persistente:</strong> Garantia de estabilidade nas consultas (queries DDL/DML) enviadas ao banco de dados.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Código Limpo:</strong> Organização modular que facilita futuras expansões e manutenções no sistema.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-actions" style="justify-content: flex-start;">
+      <a href="https://github.com/EzaquielAngel/Sistema-Profissional-de-Cozinha" target="_blank" class="btn btn-primary">Repositório Oficial no GitHub ↗</a>
+      <a href="index.html" class="btn btn-outline">Voltar ao Grimório Principal</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Gabriel Cardoso Do Nascimento. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Script de abertura automática do portal infernal
+    document.addEventListener('DOMContentLoaded', () => {
+      const gateOverlay = document.getElementById('gate-overlay');
+      if (gateOverlay) {
+        setTimeout(() => {
+          gateOverlay.classList.add('open');
+        }, 150);
+      }
+    });
+  </script>
+</body>
+</html>

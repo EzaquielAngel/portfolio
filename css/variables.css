@@ -1,0 +1,10 @@
+:root {
+  --bg-deep: #07060a;
+  --bg-surface: #121017;
+  --border-subtle: #252033;
+  --accent-blood: #990000;
+  --accent-glow: rgba(153, 0, 0, 0.25);
+  --text-main: #f1f0f5;
+  --text-muted: #9e97ab;
+  --font-mono: 'Courier New', Courier, monospace;
+}

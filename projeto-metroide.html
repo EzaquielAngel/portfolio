@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo 2D Interativo (Metroid) | Gabriel Cardoso</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ANIMAÇÃO DE ENTRADA: PORTÕES DO INFERNO -->
+  <div id="gate-overlay" class="gate-overlay">
+    <div class="gate-left"></div>
+    <div class="gate-right"></div>
+    <div class="gate-lock">
+      <div class="sigil-emblem">
+        <span class="sigil-core">🜏</span>
+      </div>
+      <span class="lock-text">DESVENDANDO MÓDULO DE GAME DEV</span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">⛤ Voltar ao Grimório</a>
+  </header>
+
+  <main class="container section">
+    <span class="badge-tag">Lógica Avançada &bull; Game Dev &bull; GameMaker</span>
+    
+    <h1 style="font-size: 2.3rem; margin: 1rem 0; color: #fff;">Jogo 2D Interativo (Metroid)</h1>
+    <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.1rem; line-height: 1.6;">
+      Um projeto de desenvolvimento de jogos focado em engenharia lógica, modelagem de física em tempo real, controle rigoroso de estados e criação de interfaces dinâmicas (HUD) sem travamentos.
+    </p>
+
+    <!-- Seção de Demonstração: GIF / Gameplay -->
+    <div class="card" style="margin-bottom: 2.5rem; text-align: center; padding: 1.5rem;">
+      <h3 style="font-family: var(--font-mono); color: var(--accent-blood); margin-bottom: 1rem;">// 01. A Dinâmica em Ação (Gameplay & Interações Contextuais)</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.6;">
+        O GIF abaixo demonstra o comportamento dinâmico do personagem no cenário. Note como o sistema identifica a proximidade de elementos no ambiente e exibe instantaneamente dicas visuais na tela (como o comando <em>"Pressione [I] para interagir"</em>), garantindo feedback imediato para quem joga.
+      </p>
+      <img src="assets/metroide-gameplay.gif" alt="Gameplay do Metroid" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 4px; border: 1px solid var(--border-subtle);" onerror="this.src='https://via.placeholder.com/800x450/121017/990000?text=Adicione+metroide-gameplay.gif+na+pasta+assets'">
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">[ Demonstração de movimentação fluida, leitura de proximidade e estados do personagem em tempo real ]</p>
+    </div>
+
+    <!-- Seção de Captura de Ecrã: Cenário e HUD -->
+    <div class="card" style="margin-bottom: 2.5rem; text-align: center; padding: 1.5rem;">
+      <h3 style="font-family: var(--font-mono); color: var(--accent-blood); margin-bottom: 1rem;">// 02. A Arquitetura Visual (Cenário e Painel de Status / HUD)</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.6;">
+        A captura de tela abaixo revela a estrutura dos cenários no estilo Metroidvania e a interface de usuário (HUD) posicionada no topo. O painel rastreia de forma síncrona o nível atual do jogador, os pontos de experiência acumulados (XP) e a barra de vida (HP), exigindo sincronização precisa de dados a cada frame renderizado.
+      </p>
+      <img src="assets/metroide-screen.png" alt="Cenário do Metroid" style="width: 100%; max-height: 500px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-subtle);" onerror="this.src='https://via.placeholder.com/800x450/121017/990000?text=Adicione+metroide-screen.png+na+pasta+assets'">
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">[ Ambiente gótico detalhado com tilesets estruturados, colunas e HUD de progressão funcional ]</p>
+    </div>
+
+    <!-- Exposição detalhada em linguagem acessível -->
+    <div class="card" style="margin-bottom: 2.5rem;">
+      <h2 style="margin-bottom: 1rem;">// 03. O Desafio Lógico e a Solução Aplicada</h2>
+      <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem;">
+        Desenvolver um jogo do zero vai muito além de colocar imagens na tela; exige raciocínio lógico avançado e domínio de estruturas de dados. Cada movimento do personagem — seja saltar, interagir com um objeto ou sofrer dano — precisa ser calculado milimetricamente para que o jogo não trave e a experiência seja fluida.
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem;">
+        Neste projeto, o maior objetivo foi estruturar uma <strong>máquina de estados finitos</strong> limpa. Isso significa que o software sabe exatamente o que o personagem está a fazer a cada microssegundo (se está parado, em movimento ou ocupado em uma ação), evitando conflitos de comandos e bugs de colisão com o cenário.
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.8;">
+        Além disso, a construção visual de labirintos e corredores exigiu o uso inteligente de blocos modulares (*tilesets*) para criar um ambiente imersivo, atmosférico e totalmente otimizado em termos de desempenho.
+      </p>
+    </div>
+
+    <!-- Grid Detalhado de Engenharia e Tecnologias -->
+    <div class="skills-grid" style="margin-bottom: 2.5rem;">
+      <div class="skill-category">
+        <h3>Lógica e Física em Tempo Real</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6;">
+          A base do funcionamento do jogo depende de regras matemáticas aplicadas quadro a quadro (por frame):
+        </p>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.8rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.5rem;"><strong>Tratamento de Gravidade:</strong> Cálculos vetorizados para simular aceleração de queda e impulsos de salto realistas.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Detecção de Colisões:</strong> Checagem rígida para impedir que o personagem atravesse paredes ou pisos do cenário.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Gestão de Eventos:</strong> Sincronização de inputs do teclado com as reações visuais do avatar na tela.</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>Ferramentas e Organização</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.8rem; line-height: 1.6;">
+          Para estruturar todo esse ecossistema técnico, foram empregadas tecnologias focadas em produtividade e controle:
+        </p>
+        <ul style="list-style: disc; margin-left: 1.2rem; margin-top: 0.8rem; color: var(--text-muted);">
+          <li style="margin-bottom: 0.5rem;"><strong>GameMaker & GML:</strong> Motor e linguagem dedicados ao controle síncrono de eventos e renderização gráfica.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Gerenciamento de HUD:</strong> Construção de elementos visuais dinâmicos para exibição de HP, XP e níveis.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Controle de Versão:</strong> Código limpo, modular e versionado publicamente através do GitHub.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-actions" style="justify-content: flex-start;">
+      <a href="https://github.com/EzaquielAngel/metroide" target="_blank" class="btn btn-primary">Repositório Oficial no GitHub ↗</a>
+      <a href="index.html" class="btn btn-outline">Voltar ao Grimório Principal</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Gabriel Cardoso Do Nascimento. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Script de abertura automática do portal infernal
+    document.addEventListener('DOMContentLoaded', () => {
+      const gateOverlay = document.getElementById('gate-overlay');
+      if (gateOverlay) {
+        setTimeout(() => {
+          gateOverlay.classList.add('open');
+        }, 150);
+      }
+    });
+  </script>
+</body>
+</html>
