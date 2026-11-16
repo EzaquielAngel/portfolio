@@ -1,43 +1,49 @@
-import { portfolioData } from './projects-data.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Abertura automática e fluida dos Portões do Inferno
-  const gateOverlay = document.getElementById('gate-overlay');
-  if (gateOverlay) {
-    setTimeout(() => {
-      gateOverlay.classList.add('open');
-    }, 200);
+// --- DADOS DOS PROJETOS (GRIMÓRIO / CONQUISTAS) ---
+const projects = [
+  {
+    title: "Sistema de Controle de Estoque para Restaurante (Cozinha Japonesa)",
+    category: "Full-Stack • Banco de Dados • Node.js",
+    description: "Desenvolvido do zero para resolver gargalos operacionais em gastronomia, integrando fichas técnicas e controle transacional de insumos.",
+    techs: ["Node.js", "Express", "MySQL", "JavaScript", "HTML5", "CSS3"],
+    link: "projeto-cozinha.html"
+  },
+  {
+    title: "Jogo 2D Interativo (Metroid)",
+    category: "Lógica Avançada • Game Dev • GameMaker",
+    description: "Framework de plataforma 2D com máquina de estados finitos, tratamento de gravidade por frame e gestão síncrona de HUD.",
+    techs: ["GameMaker Language (GML)", "Lógica de Programação", "Física 2D"],
+    link: "projeto-metroide.html"
   }
+];
 
-  // Renderização dinâmica dos cartões de projetos
-  const container = document.getElementById('projects-container');
+// --- RENDERIZAÇÃO DOS PROJETOS NO DOM (DESIGN PROFISSIONAL) ---
+function renderProjects() {
+  const container = document.getElementById("projects-container");
   if (!container) return;
 
-  portfolioData.projects.forEach(project => {
-    const card = document.createElement('article');
-    card.className = 'project-card card';
-    
-    card.innerHTML = `
-      <span class="project-cat">${project.category}</span>
-      <h3>${project.title}</h3>
-      <p>${project.shortDescription}</p>
-      <ul class="tech-list">
-        ${project.technologies.map(tech => `<li>${tech}</li>`).join('')}
-      </ul>
-      <span class="link-detail">Acessar Página do Projeto ↗</span>
-    `;
-
-    card.addEventListener('click', () => {
-      window.location.href = project.pageUrl;
-    });
-
-    container.appendChild(card);
-  });
-});
+  container.innerHTML = projects.map(proj => `
+    <div class="project-card" onclick="window.location.href='${proj.link}'">
+      <div class="project-header-row">
+        <span class="project-cat">${proj.category}</span>
+      </div>
+      <h3>${proj.title}</h3>
+      <p>${proj.description}</p>
+      <div class="tech-list">
+        ${proj.techs.map(tech => `<span class="tech-badge">${tech}</span>`).join("")}
+      </div>
+      <div class="project-footer">
+        <span class="link-detail">Analisar Arquitetura & Detalhes ↗</span>
+      </div>
+    </div>
+  `).join("");
+}
 
 // --- EFEITOS VISUAIS E INTERATIVIDADE CAVALIERE ---
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Abertura do Estandarte de Entrada
+  // 1. Renderiza os projetos dinamicamente
+  renderProjects();
+
+  // 2. Abertura do Estandarte de Entrada
   const gateOverlay = document.getElementById('gate-overlay');
   if (gateOverlay) {
     setTimeout(() => {
@@ -45,21 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 350);
   }
 
-  // 2. Animação de Letras no Título Principal
-  const titleEl = document.getElementById('animated-title');
-  if (titleEl) {
-    const text = titleEl.textContent.trim();
-    titleEl.textContent = '';
-    [...text].forEach((char, index) => {
-      const span = document.createElement('span');
-      span.textContent = char === ' ' ? '\u00A0' : char;
-      span.classList.add('char-animate');
-      span.style.animationDelay = `${0.45 + index * 0.03}s`;
-      titleEl.appendChild(span);
+  // Revelação suave e elegante da descrição da Hero Section
+  const heroDesc = document.getElementById('hero-fade-desc');
+  if (heroDesc) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        heroDesc.classList.add('active');
+      }, 250);
     });
   }
 
-  // 3. Efeito de Digitação Progressiva no Subtítulo (Typewriter)
+  // 4. Efeito de Digitação Progressiva no Subtítulo (Typewriter)
   const typewriterEl = document.getElementById('hero-typewriter');
   if (typewriterEl) {
     const fullText = typewriterEl.getAttribute('data-text') || '';
@@ -76,28 +78,24 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           clearInterval(typeInterval);
         }
-      }, 24);
-    }, 1100);
+      }, 22);
+    }, 1000);
   }
 
-  // 4. Animação Palavra por Palavra nos Títulos das Seções (H2)
-  document.querySelectorAll('.section-header h2').forEach((h2) => {
-    const numSpan = h2.querySelector('.sec-num');
-    const rawText = h2.textContent.replace(numSpan ? numSpan.textContent : '', '').trim();
-    h2.innerHTML = '';
-    if (numSpan) h2.appendChild(numSpan);
-
-    rawText.split(' ').forEach((word, idx) => {
-      const wSpan = document.createElement('span');
-      wSpan.textContent = word;
-      wSpan.className = 'word-reveal';
-      wSpan.style.transitionDelay = `${idx * 0.12}s`;
-      wSpan.style.marginLeft = '0.35rem';
-      h2.appendChild(wSpan);
+  // 5. Animação Letra por Letra Charmosa nos Títulos Principais das Seções
+  document.querySelectorAll('.char-title-anim').forEach((el) => {
+    const text = el.textContent.trim();
+    el.textContent = '';
+    [...text].forEach((char, index) => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      span.classList.add('char-animate');
+      span.style.animationDelay = `${0.1 + index * 0.025}s`;
+      el.appendChild(span);
     });
   });
 
-  // 5. Botão de Copiar E-mail na Convocação
+  // 6. Botão de Copiar E-mail na Convocação
   const copyBtn = document.getElementById('copy-email-btn');
   const emailText = document.getElementById('my-email-text');
   if (copyBtn && emailText) {
@@ -112,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Cursor Personalizado (Desktop)
+  // 7. Cursor Personalizado (Desktop)
   const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
   if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
@@ -134,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Efeito Spotlight nos Cards
+  // 8. Efeito Spotlight nos Cards
   document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.card, .skill-category, .project-card');
     cards.forEach((card) => {
@@ -144,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. Scroll Reveal
+  // 9. Scroll Reveal (Aparecer suave ao rolar a página)
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -156,3 +154,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
   reveals.forEach((el) => observer.observe(el));
 });
+
+// Efeito de Digitação Progressiva na Descrição do Cavaleiro (Hero)
+  const typewriterDesc = document.getElementById('hero-typewriter-desc');
+  if (typewriterDesc) {
+    const textToType = typewriterDesc.getAttribute('data-text') || '';
+    typewriterDesc.textContent = ''; // Limpa o conteúdo inicial
+    
+    // Cria um cursor de escrita temático
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor-gold';
+    typewriterDesc.appendChild(cursor);
+
+    let charIndex = 0;
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const typingInterval = setInterval(() => {
+          if (charIndex < textToType.length) {
+            // Insere a letra antes do cursor
+            typewriterDesc.insertBefore(document.createTextNode(textToType.charAt(charIndex)), cursor);
+            charIndex++;
+          } else {
+            clearInterval(typingInterval);
+            // Remove o cursor após terminar de escrever
+            setTimeout(() => cursor.remove(), 1200);
+          }
+        }, 18); // Velocidade da digitação (quanto menor, mais rápido)
+      }, 500); // Atraso inicial para iniciar a escrita
+    });
+  }
+  
+  // Revelação fluida e sequencial dos parágrafos da biografia
+  const paragraphElements = document.querySelectorAll('.paragraph-reveal');
+  if (paragraphElements.length > 0) {
+    const observerOptions = {
+      root: null,
+      threshold: 0.15
+    };
+
+    const paragraphObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    paragraphElements.forEach(el => {
+      paragraphObserver.observe(el);
+    });
+  }

@@ -21,9 +21,39 @@ body {
   background-attachment: fixed;
 }
 
+/* --- ELMO DE CAVALEIRO MEGALOMANÍACO AO FUNDO --- */
+.knight-bg-watermark {
+  position: fixed;
+  right: -20px;
+  bottom: -40px;
+  width: 580px;
+  height: 580px;
+  opacity: 0.14; /* Mais nítido, imponente e marcante */
+  pointer-events: none;
+  z-index: 0;
+  filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.25));
+  animation: float-knight-megalomania 9s ease-in-out infinite;
+}
+
+@keyframes float-knight-megalomania {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.2));
+  }
+  50% { 
+    transform: translateY(-18px) rotate(-1.2deg) scale(1.03); 
+    filter: drop-shadow(0 0 45px rgba(212, 175, 55, 0.45));
+  }
+}
+
+@keyframes float-knight-bg {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-1.5deg); }
+}
+
 /* --- CURSOR PERSONALIZADO (Desktop) --- */
 @media (pointer: fine) {
-  body, a, button, .project-card {
+  body, a, button, input, textarea, .project-card {
     cursor: none;
   }
 }
@@ -245,9 +275,9 @@ body {
   padding: 4rem 2rem;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
-/* Linhas táticas de campo sutil ao fundo */
 .tactical-pitch-bg {
   position: absolute;
   width: 600px;
@@ -291,31 +321,6 @@ body {
   letter-spacing: 1px;
 }
 
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 800;
-  margin: 1.2rem 0;
-  color: var(--italy-white);
-  line-height: 1.2;
-  letter-spacing: 1px;
-}
-
-/* Animação individual de letras */
-.char-animate {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(22px) rotateX(-40deg);
-  animation: charReveal 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes charReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotateX(0deg);
-  }
-}
-
 .gold-shimmer {
   background: linear-gradient(90deg, var(--accent-gold), #fff3b0, var(--accent-gold));
   background-size: 200% auto;
@@ -328,11 +333,34 @@ body {
   to { background-position: 200% center; }
 }
 
-.hero p {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  max-width: 640px;
-  margin: 0 auto 2.2rem auto;
+/* --- ANIMAÇÃO LETRA POR LETRA --- */
+.char-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: charReveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes charReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background-color: var(--accent-gold);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink-cursor 0.8s infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-actions {
@@ -387,6 +415,8 @@ body {
   max-width: 1080px;
   margin: 0 auto;
   padding: 4.5rem 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {
@@ -428,7 +458,6 @@ h2 span.sec-num {
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Efeito de brilho que segue o cursor */
 .card::before, .skill-category::before, .project-card::before {
   content: '';
   position: absolute;
@@ -449,187 +478,6 @@ h2 span.sec-num {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
-/* --- ANIMAÇÃO DO CAVALEIRO / ESPADAS PERTO DOS PROJETOS --- */
-.knight-companion {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  background: rgba(13, 22, 40, 0.85);
-  border: 1px solid var(--border-subtle);
-  padding: 0.5rem 1rem;
-  border-radius: 99px;
-}
-
-.knight-svg {
-  width: 34px;
-  height: 34px;
-  animation: knight-float 3s ease-in-out infinite;
-}
-
-.sword-left {
-  transform-origin: center;
-  animation: sword-clash-left 3.5s ease-in-out infinite;
-}
-
-.sword-right {
-  transform-origin: center;
-  animation: sword-clash-right 3.5s ease-in-out infinite;
-}
-
-@keyframes knight-float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-}
-
-@keyframes sword-clash-left {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-8deg); }
-}
-
-@keyframes sword-clash-right {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(8deg); }
-}
-
-.knight-caption {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--accent-gold);
-}
-
-/* --- GRIDS & CARDS DE PROJETO --- */
-.skills-grid, .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.8rem;
-}
-
-.skill-category h3 {
-  font-family: var(--font-display);
-  color: var(--accent-gold);
-  font-size: 1.15rem;
-  margin-bottom: 0.8rem;
-}
-
-.skill-category ul {
-  list-style: none;
-  color: var(--text-muted);
-}
-
-.skill-category li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.skill-category li::before {
-  content: '◆';
-  color: var(--italy-green);
-  font-size: 0.7rem;
-}
-
-.project-card h3 {
-  font-family: var(--font-display);
-  color: var(--italy-white);
-  font-size: 1.3rem;
-  margin: 0.5rem 0 0.8rem 0;
-}
-
-.project-cat {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-gold);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.project-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 1.4rem;
-}
-
-.tech-list {
-  display: flex;
-  gap: 0.5rem;
-  list-style: none;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.tech-list li {
-  background: rgba(0, 102, 204, 0.15);
-  border: 1px solid rgba(0, 102, 204, 0.3);
-  font-size: 0.75rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: 4px;
-  color: #cbd5e1;
-  font-family: var(--font-mono);
-}
-
-.link-detail {
-  color: var(--accent-gold);
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: gap 0.2s ease;
-}
-
-.project-card:hover .link-detail {
-  gap: 0.8rem;
-}
-
-/* --- REVEAL AO ROLAR A PÁGINA --- */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- CONTATO E RODAPÉ --- */
-.contact-card {
-  text-align: center;
-  padding: 3rem 2rem;
-  border-top: 2px solid var(--italy-green);
-  border-bottom: 2px solid var(--italy-red);
-}
-
-.contact-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer {
-  text-align: center;
-  padding: 2.5rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-subtle);
-  font-size: 0.85rem;
-}
-
-/* Responsividade Mobile */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem 1.5rem;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .nav-links {
-    gap: 1.2rem;
-  }
-}
 /* --- QUADRO DE PERFIL / RETRATO DO CAVALEIRO --- */
 .profile-card {
   display: flex;
@@ -677,7 +525,6 @@ h2 span.sec-num {
   transform: scale(1.08);
 }
 
-/* Insígnia Tricolor Italiana na base do retrato */
 .portrait-italy-badge {
   position: absolute;
   bottom: -6px;
@@ -701,90 +548,381 @@ h2 span.sec-num {
   text-align: left;
   width: 100%;
 }
-/* --- CAVALEIRO MEDIEVAL DE FUNDO (MARCA D'ÁGUA SUTIL) --- */
-.knight-bg-watermark {
-  position: fixed;
-  right: -40px;
-  bottom: -20px;
-  width: 480px;
-  height: 480px;
-  opacity: 0.045;
-  pointer-events: none;
-  z-index: 0;
-  animation: float-knight-bg 8s ease-in-out infinite;
+
+/* --- ANIMAÇÃO DO CAVALEIRO / ESPADAS PERTO DOS PROJETOS --- */
+.knight-companion {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(13, 22, 40, 0.85);
+  border: 1px solid var(--border-subtle);
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
 }
 
-@keyframes float-knight-bg {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(-1.5deg); }
+.knight-svg
+
+/* --- GRELHA DE COMPETÊNCIAS (ARSENAL TÉCNICO) --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
 }
 
-/* --- CURSOR DE DIGITAÇÃO NO SUBTÍTULO --- */
-.typing-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background-color: var(--accent-gold);
-  margin-left: 4px;
-  vertical-align: middle;
-  animation: blink-cursor 0.8s infinite;
+.skill-category {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  padding: 2.2rem 2rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes blink-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* Detalhe de brasão sutil no topo de cada card de skill */
+.skill-category::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--italy-green), var(--accent-gold), var(--italy-red));
+  opacity: 0.7;
 }
 
-/* --- ANIMAÇÃO DE PALAVRAS NOS TÍTULOS DAS SEÇÕES --- */
-.word-reveal {
-  display: inline-block;
+.skill-category:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.skill-category h3 {
+  font-family: var(--font-display);
+  color: var(--accent-gold);
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.skill-category ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-category li {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(6, 11, 22, 0.5);
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.25s ease;
+}
+
+.skill-category li:hover {
+  background: rgba(212, 175, 55, 0.06);
+  border-color: rgba(212, 175, 55, 0.2);
+  color: var(--italy-white);
+  transform: translateX(4px);
+}
+
+.skill-category li::before {
+  content: '✦';
+  color: var(--italy-green);
+  font-size: 0.75rem;
+}
+/* --- GRIMÓRIO DE PROJETOS & CONQUISTAS PROFISSIONAL --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  padding: 2.2rem 2rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* Faixa tricolor italiana no topo de cada card de projeto */
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--italy-green), var(--accent-gold), var(--italy-red));
+  opacity: 0.85;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.12), transparent 60%);
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
-.reveal.visible .word-reveal {
+.project-card:hover::before {
   opacity: 1;
-  transform: translateY(0);
 }
 
-/* --- FORMULÁRIO DE CONVOCAÇÃO (ENVIO DE E-MAIL) --- */
+.project-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.project-cat {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: rgba(212, 175, 55, 0.08);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  font-family: var(--font-display);
+  color: var(--italy-white);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.35;
+}
+
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.tech-list {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  background: rgba(0, 102, 204, 0.15);
+  border: 1px solid rgba(0, 102, 204, 0.35);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-family: var(--font-mono);
+  transition: all 0.25s ease;
+}
+
+.project-card:hover .tech-badge {
+  border-color: rgba(0, 102, 204, 0.6);
+  background: rgba(0, 102, 204, 0.25);
+  color: var(--italy-white);
+}
+
+.project-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.2rem;
+}
+
+.link-detail {
+  color: var(--accent-gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s ease;
+}
+
+.project-card:hover .link-detail {
+  gap: 0.8rem;
+}
+/* --- BRASÃO / ESCUDO DE HONRA DINÂMICO --- */
+.knight-emblem-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(13, 22, 40, 0.9), rgba(6, 11, 22, 0.95));
+  border: 1px solid var(--border-glow);
+  padding: 0.6rem 1.2rem;
+  border-radius: 99px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(212, 175, 55, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.knight-emblem-badge:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3), inset 0 0 18px rgba(212, 175, 55, 0.3);
+}
+
+.emblem-shield-wrap {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.emblem-svg {
+  width: 100%;
+  height: 100%;
+  animation: emblem-float 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+}
+
+.emblem-sword-left {
+  transform-origin: center;
+  animation: emblem-clash-l 4s ease-in-out infinite;
+}
+
+.emblem-sword-right {
+  transform-origin: center;
+  animation: emblem-clash-r 4s ease-in-out infinite;
+}
+
+@keyframes emblem-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(1.5deg); }
+}
+
+@keyframes emblem-clash-l {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg); }
+}
+
+@keyframes emblem-clash-r {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.emblem-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.emblem-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.emblem-sub {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --- SEÇÃO DE CONVOCAÇÃO EXECUTIVA (CONTATO) --- */
+.contact-exec-card {
+  padding: 3rem 2.5rem;
+  border-top: 3px solid var(--accent-gold);
+  position: relative;
+}
+
+.exec-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--italy-green);
+  background: rgba(0, 146, 70, 0.1);
+  border: 1px solid rgba(0, 146, 70, 0.3);
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 2.5rem;
-  text-align: left;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3rem;
   align-items: start;
 }
 
 .contact-info h3 {
   font-family: var(--font-display);
+  color: var(--italy-white);
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.channel-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--accent-gold);
-  font-size: 1.35rem;
-  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .email-copy-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(6, 11, 22, 0.8);
+  background: rgba(6, 11, 22, 0.9);
   border: 1px solid var(--border-subtle);
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.9rem;
   border-radius: 6px;
-  margin: 1.2rem 0;
+  margin-top: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--italy-white);
 }
 
 .btn-copy-small {
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.12);
   color: var(--accent-gold);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 0.25rem 0.6rem;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-family: var(--font-mono);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -795,10 +933,16 @@ h2 span.sec-num {
   color: var(--bg-deep);
 }
 
+.channel-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
 .convocation-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .form-group {
@@ -809,14 +953,15 @@ h2 span.sec-num {
 
 .form-group label {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--accent-gold);
+  letter-spacing: 0.5px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  background: rgba(6, 11, 22, 0.85);
+  background: rgba(6, 11, 22, 0.9);
   border: 1px solid var(--border-subtle);
   border-radius: 6px;
   padding: 0.85rem 1rem;
@@ -830,21 +975,84 @@ h2 span.sec-num {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-gold);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 110px;
+  min-height: 120px;
 }
 
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  .knight-bg-watermark {
-    width: 300px;
-    height: 300px;
-    right: -60px;
+}
+/* --- RODAPÉ PROFISSIONAL ALINHADO --- */
+.footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+  background: rgba(4, 8, 17, 0.6);
+  backdrop-filter: blur(8px);
+}
+/* --- ANIMAÇÃO DE SURGIMENTO DA DESCRIÇÃO DA HERO --- */
+.hero-desc-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hero-desc-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* --- CURSOR DE ESCRITA TÁTICO / PERGAMINHO --- */
+.typing-cursor-gold {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background-color: var(--accent-gold);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: blink-gold-cursor 0.7s infinite;
+}
+
+@keyframes blink-gold-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --- FORÇAR O CURSOR PERSONALIZADO EM TODOS OS ELEMENTOS CLICÁVEIS --- */
+@media (pointer: fine) {
+  body, a, button, input, textarea, .project-card, .skill-category, [onclick] {
+    cursor: none !important;
   }
+}
+
+/* Estado ativo do anel do cursor sobre elementos interativos (com a cor do brasão/Itália) */
+.cursor-ring.active {
+  width: 54px;
+  height: 54px;
+  border-color: var(--italy-green);
+  background-color: rgba(0, 146, 70, 0.12);
+  box-shadow: 0 0 15px rgba(0, 146, 70, 0.3);
+}
+/* --- REVELAÇÃO PROGRESSIVA DE PARÁGRAFOS --- */
+.paragraph-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.paragraph-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
