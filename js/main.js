@@ -54,12 +54,65 @@ document.addEventListener('DOMContentLoaded', () => {
       const span = document.createElement('span');
       span.textContent = char === ' ' ? '\u00A0' : char;
       span.classList.add('char-animate');
-      span.style.animationDelay = `${0.5 + index * 0.03}s`;
+      span.style.animationDelay = `${0.45 + index * 0.03}s`;
       titleEl.appendChild(span);
     });
   }
 
-  // 3. Cursor Personalizado (Apenas dispositivos com mouse)
+  // 3. Efeito de Digitação Progressiva no Subtítulo (Typewriter)
+  const typewriterEl = document.getElementById('hero-typewriter');
+  if (typewriterEl) {
+    const fullText = typewriterEl.getAttribute('data-text') || '';
+    const cursorSpan = document.createElement('span');
+    cursorSpan.className = 'typing-cursor';
+    typewriterEl.appendChild(cursorSpan);
+
+    let charIdx = 0;
+    setTimeout(() => {
+      const typeInterval = setInterval(() => {
+        if (charIdx < fullText.length) {
+          typewriterEl.insertBefore(document.createTextNode(fullText.charAt(charIdx)), cursorSpan);
+          charIdx++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 24);
+    }, 1100);
+  }
+
+  // 4. Animação Palavra por Palavra nos Títulos das Seções (H2)
+  document.querySelectorAll('.section-header h2').forEach((h2) => {
+    const numSpan = h2.querySelector('.sec-num');
+    const rawText = h2.textContent.replace(numSpan ? numSpan.textContent : '', '').trim();
+    h2.innerHTML = '';
+    if (numSpan) h2.appendChild(numSpan);
+
+    rawText.split(' ').forEach((word, idx) => {
+      const wSpan = document.createElement('span');
+      wSpan.textContent = word;
+      wSpan.className = 'word-reveal';
+      wSpan.style.transitionDelay = `${idx * 0.12}s`;
+      wSpan.style.marginLeft = '0.35rem';
+      h2.appendChild(wSpan);
+    });
+  });
+
+  // 5. Botão de Copiar E-mail na Convocação
+  const copyBtn = document.getElementById('copy-email-btn');
+  const emailText = document.getElementById('my-email-text');
+  if (copyBtn && emailText) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(emailText.textContent.trim()).then(() => {
+        const original = copyBtn.textContent;
+        copyBtn.textContent = 'Copiado! ✓';
+        setTimeout(() => {
+          copyBtn.textContent = original;
+        }, 2200);
+      });
+    });
+  }
+
+  // 6. Cursor Personalizado (Desktop)
   const dot = document.getElementById('cursor-dot');
   const ring = document.getElementById('cursor-ring');
   if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
@@ -72,9 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }, { duration: 180, fill: 'forwards' });
     });
 
-    // Expande o anel ao passar em links, botões e cards
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('a, button, .project-card, .skill-category')) {
+      if (e.target.closest('a, button, input, textarea, .project-card, .skill-category')) {
         ring.classList.add('active');
       } else {
         ring.classList.remove('active');
@@ -82,19 +134,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Efeito Spotlight (Brilho que acompanha o mouse nos cards)
+  // 7. Efeito Spotlight nos Cards
   document.addEventListener('mousemove', (e) => {
     const cards = document.querySelectorAll('.card, .skill-category, .project-card');
     cards.forEach((card) => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
     });
   });
 
-  // 5. Scroll Reveal (Aparição suave das seções)
+  // 8. Scroll Reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

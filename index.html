@@ -9,6 +9,19 @@
 </head>
 <body>
 
+  <!-- ILUSTRAÇÃO DE CAVALEIRO MEDIEVAL AO FUNDO -->
+  <svg class="knight-bg-watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 18C68 18 46 42 46 76V128L100 175L154 128V76C154 42 132 18 100 18Z" stroke="#d4af37" stroke-width="2.5"/>
+    <path d="M100 18V175" stroke="#d4af37" stroke-width="2"/>
+    <path d="M48 82H152" stroke="#d4af37" stroke-width="2.5"/>
+    <path d="M52 96H92M108 96H148" stroke="#d4af37" stroke-width="2"/>
+    <path d="M100 18C100 8 118 4 134 12C122 14 112 18 100 18Z" fill="#d4af37"/>
+    <circle cx="72" cy="114" r="3" fill="#d4af37"/>
+    <circle cx="82" cy="122" r="3" fill="#d4af37"/>
+    <circle cx="128" cy="114" r="3" fill="#d4af37"/>
+    <circle cx="118" cy="122" r="3" fill="#d4af37"/>
+  </svg>
+
   <!-- CURSOR PERSONALIZADO -->
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
@@ -28,7 +41,6 @@
 
   <header class="navbar">
     <a href="#" class="logo">
-      <!-- Mini Escudo SVG -->
       <svg width="22" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 1L2 5V12C2 18.5 6.3 24.3 12 25.5C17.7 24.3 22 18.5 22 12V5L12 1Z" stroke="#d4af37" stroke-width="2" fill="rgba(212,175,55,0.1)"/>
         <path d="M12 5V21M7 11H17" stroke="#009246" stroke-width="2"/>
@@ -52,10 +64,10 @@
       <div class="hero-content">
         <span class="badge-tag">Engenharia da Computação &bull; Uningá</span>
         <h1 id="animated-title" class="gold-shimmer">Desenvolvedor Full Stack Júnior</h1>
-        <p>Aplicando a precisão tática da Engenharia da Computação no desenvolvimento web para construir soluções limpas, eficientes e preparadas para o jogo real.</p>
+        <p id="hero-typewriter" data-text="Aplicando a precisão tática da Engenharia da Computação no desenvolvimento web para construir soluções limpas, eficientes e preparadas para o jogo real."></p>
         <div class="hero-actions">
           <a href="#projetos" class="btn btn-primary">Explorar Conquistas</a>
-          <a href="https://github.com/EzaquielAngel" target="_blank" class="btn btn-outline">GitHub ↗</a>
+          <a href="#contato" class="btn btn-outline">Enviar Convocação ✉</a>
         </div>
       </div>
     </section>
@@ -65,16 +77,31 @@
       <div class="section-header">
         <h2><span class="sec-num">01</span> Perfil Profissional</h2>
       </div>
-      <div class="card">
-        <p>
-          Olá! Seja bem-vindo ao meu portfólio. Sou <strong>Gabriel Cardoso Do Nascimento</strong>, graduando em Engenharia da Computação no Centro Universitário Ingá (Uningá) e busco consolidar minha carreira como <strong>Desenvolvedor Full Stack Júnior</strong>.
-        </p>
-        <p style="margin-top: 1rem;">
-          Assim como em uma partida de alto nível ou na estratégia da cavalaria clássica, acredito que um grande software exige disciplina, visão de campo e trabalho em equipe. Atuo com linguagens versáteis como JavaScript, C#, Java, Python e PHP, unindo a lógica analítica da engenharia ao desenvolvimento web moderno.
-        </p>
-        <p style="margin-top: 1rem;">
-          Meu foco é transformar problemas complexos em código limpo, estruturado e funcional, mantendo sempre a mentalidade de evolução contínua para somar em projetos reais.
-        </p>
+      <div class="card profile-card">
+        
+        <!-- Quadro da Foto Temático -->
+        <div class="knight-portrait-wrapper">
+          <div class="knight-portrait-inner">
+            <img src="assets/perfil.jpg" alt="Foto de Gabriel Cardoso Do Nascimento" onerror="this.src='https://via.placeholder.com/300x300/0d1628/d4af37?text=Gabriel+Cardoso'">
+          </div>
+          <div class="portrait-italy-badge" title="Cavaliere Azzurro">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Texto abaixo da foto -->
+        <div class="profile-text">
+          <p>
+            Olá! Seja bem-vindo ao meu portfólio. Sou <strong>Gabriel Cardoso Do Nascimento</strong>, graduando em Engenharia da Computação no Centro Universitário Ingá (Uningá) e busco consolidar minha carreira como <strong>Desenvolvedor Full Stack Júnior</strong>.
+          </p>
+          <p style="margin-top: 1rem;">
+            Assim como em uma partida de alto nível ou na estratégia da cavalaria clássica, acredito que um grande software exige disciplina, visão de campo e trabalho em equipe. Atuo com linguagens versáteis como JavaScript, C#, Java, Python e PHP, unindo a lógica analítica da engenharia ao desenvolvimento web moderno.
+          </p>
+          <p style="margin-top: 1rem;">
+            Meu foco é transformar problemas complexos em código limpo, estruturado e funcional, mantendo sempre a mentalidade de evolução contínua para somar em projetos reais.
+          </p>
+        </div>
+
       </div>
     </section>
 
@@ -116,20 +143,15 @@
       <div class="section-header">
         <h2><span class="sec-num">03</span> Projetos & Conquistas</h2>
         
-        <!-- Animação SVG de Cavaleiro / Espadas e Escudo -->
         <div class="knight-companion">
           <svg class="knight-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Espada Esquerda -->
             <g class="sword-left">
               <path d="M14 50L48 16M44 14L50 20M18 42L22 46" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
             </g>
-            <!-- Espada Direita -->
             <g class="sword-right">
               <path d="M50 50L16 16M20 14L14 20M46 42L42 46" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
             </g>
-            <!-- Escudo Central Azzurro & Ouro -->
             <path d="M32 14L18 20V32C18 41.5 23.9 49.8 32 52C40.1 49.8 46 41.5 46 32V20L32 14Z" fill="#0d1628" stroke="#d4af37" stroke-width="2.5"/>
-            <!-- Faixa Italiana no Escudo -->
             <path d="M25 22V42" stroke="#009246" stroke-width="3"/>
             <path d="M32 20V45" stroke="#f8fafc" stroke-width="3"/>
             <path d="M39 22V42" stroke="#ce2b37" stroke-width="3"/>
@@ -143,16 +165,56 @@
       </div>
     </section>
 
-    <!-- Seção de Contato -->
+    <!-- Seção de Contato / Convocação Direta -->
     <section id="contato" class="container section reveal">
       <div class="section-header">
-        <h2><span class="sec-num">04</span> Convocação (Contato)</h2>
+        <h2><span class="sec-num">04</span> Convocação (Contato Direto)</h2>
       </div>
       <div class="card contact-card">
-        <p>Pronto para entrar em campo como <strong>Desenvolvedor Full Stack Júnior</strong>. Vamos conversar sobre como posso contribuir com a sua equipe:</p>
-        <div class="contact-links">
-          <a href="https://github.com/EzaquielAngel" target="_blank" class="btn btn-outline">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/gabriel-cardoso-do-nascimento" target="_blank" class="btn btn-primary">LinkedIn ↗</a>
+        <div class="contact-grid">
+          
+          <div class="contact-info">
+            <h3>Pronto para entrar em campo</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              Estou aberto a oportunidades como <strong>Desenvolvedor Full Stack Júnior</strong>, estágios em desenvolvimento ou projetos freelance. Envie uma mensagem direta pelo formulário ao lado ou conecte-se pelas minhas redes:
+            </p>
+
+            <div class="email-copy-box">
+              <span id="my-email-text">g.c.nascimento.dev@gmail.com</span>
+              <button type="button" class="btn-copy-small" id="copy-email-btn">Copiar E-mail</button>
+            </div>
+
+            <div class="contact-links" style="justify-content: flex-start; margin-top: 1.5rem;">
+              <a href="https://github.com/EzaquielAngel" target="_blank" class="btn btn-outline">GitHub ↗</a>
+              <a href="https://www.linkedin.com/in/gabriel-cardoso-do-nascimento" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+            </div>
+          </div>
+
+          <form class="convocation-form" action="https://formsubmit.co/g.c.nascimento.dev@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nova Convocação do Portfólio!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="form-group">
+              <label for="nome">Seu Nome ou Empresa</label>
+              <input type="text" id="nome" name="name" placeholder="Ex: Recrutador / Tech Lead" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Seu E-mail para Retorno</label>
+              <input type="email" id="email" name="email" placeholder="nome@empresa.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="mensagem">Mensagem ou Proposta</label>
+              <textarea id="mensagem" name="message" placeholder="Olá Gabriel, vimos o seu portfólio e gostaríamos de conversar..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              Enviar Convocação por E-mail ✉
+            </button>
+          </form>
+
         </div>
       </div>
     </section>
