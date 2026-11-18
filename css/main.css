@@ -28,7 +28,7 @@ body {
   bottom: -40px;
   width: 580px;
   height: 580px;
-  opacity: 0.14; /* Mais nítido, imponente e marcante */
+  opacity: 0.14;
   pointer-events: none;
   z-index: 0;
   filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.25));
@@ -46,15 +46,9 @@ body {
   }
 }
 
-@keyframes float-knight-bg {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(-1.5deg); }
-}
-
-/* --- CURSOR TÁTICO: LÂMINA / RETÍCULO DE ENGENHARIA E CAVALARIA (BLINDADO) --- */
+/* --- CURSOR TÁTICO PERSONALIZADO (OTIMIZADO E ÁGIL) --- */
 @media (pointer: fine) {
-  /* Esconde o cursor nativo em absolutamente tudo na página */
-  body, html, a, button, input, textarea, .project-card, .skill-category, [onclick], * {
+  body, html, a, button, input, textarea, .project-card, .library-book, .modal-close-btn, [onclick], * {
     cursor: none !important;
   }
 
@@ -64,23 +58,22 @@ body {
     left: 0;
     width: 28px;
     height: 28px;
-    pointer-events: none !important; /* Impede que o cursor interaja fisicamente com os elementos abaixo */
+    pointer-events: none !important;
     transform: translate3d(0, 0, 0);
     margin-left: -14px;
     margin-top: -14px;
     z-index: 999999;
-    transition: width 0.2s ease, height 0.2s ease, transform 0.15s ease;
+    transition: width 0.15s ease, height 0.15s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform;
   }
 
-  /* Impede que filhos do cursor bloqueiem o evento do rato */
   .cursor-ring * {
     pointer-events: none !important;
   }
 
-  /* Desenha a lâmina/cruz tática geométrica */
   .cursor-ring::before {
     content: '';
     position: absolute;
@@ -99,7 +92,6 @@ body {
     box-shadow: 0 0 6px var(--accent-gold);
   }
 
-  /* Núcleo central dourado */
   .cursor-dot-inner {
     position: absolute;
     width: 6px;
@@ -109,19 +101,14 @@ body {
     box-shadow: 0 0 8px var(--accent-gold);
   }
 
-  /* Estado ativo ao passar por cima de elementos interativos */
   .cursor-ring.active {
     width: 44px;
     height: 44px;
     margin-left: -22px;
     margin-top: -22px;
-    transform: rotate(45deg) scale(1.1);
-  }
-  
-  .cursor-ring.active::before,
-  .cursor-ring.active::after {
-    background: var(--accent-gold);
-    box-shadow: 0 0 12px var(--accent-gold);
+    border-color: var(--italy-green);
+    background-color: rgba(0, 146, 70, 0.12);
+    box-shadow: 0 0 15px rgba(0, 146, 70, 0.3);
   }
 }
 
@@ -303,7 +290,7 @@ body {
   width: 100%;
 }
 
-/* --- HERO SECTION & LETRAS ANIMADAS --- */
+/* --- HERO SECTION --- */
 .hero {
   min-height: 82vh;
   display: flex;
@@ -386,17 +373,17 @@ body {
   }
 }
 
-.typing-cursor {
+.typing-cursor-gold {
   display: inline-block;
   width: 2px;
   height: 1.1em;
   background-color: var(--accent-gold);
-  margin-left: 4px;
+  margin-left: 3px;
   vertical-align: middle;
-  animation: blink-cursor 0.8s infinite;
+  animation: blink-gold-cursor 0.7s infinite;
 }
 
-@keyframes blink-cursor {
+@keyframes blink-gold-cursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
@@ -485,7 +472,7 @@ h2 span.sec-num {
   border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-.card, .skill-category, .project-card {
+.card, .library-book, .project-card {
   background: var(--bg-surface);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
@@ -496,7 +483,7 @@ h2 span.sec-num {
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.card::before, .skill-category::before, .project-card::before {
+.card::before, .library-book::before, .project-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -506,11 +493,11 @@ h2 span.sec-num {
   pointer-events: none;
 }
 
-.card:hover::before, .skill-category:hover::before, .project-card:hover::before {
+.card:hover::before, .library-book:hover::before, .project-card:hover::before {
   opacity: 1;
 }
 
-.card:hover, .project-card:hover, .skill-category:hover {
+.card:hover, .project-card:hover, .library-book:hover {
   border-color: var(--border-glow);
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
@@ -587,124 +574,34 @@ h2 span.sec-num {
   width: 100%;
 }
 
-/* --- ANIMAÇÃO DO CAVALEIRO / ESPADAS PERTO DOS PROJETOS --- */
-.knight-companion {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  background: rgba(13, 22, 40, 0.85);
-  border: 1px solid var(--border-subtle);
-  padding: 0.5rem 1rem;
-  border-radius: 99px;
+.paragraph-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.knight-svg
+.paragraph-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* --- GRELHA DE COMPETÊNCIAS (ARSENAL TÉCNICO) --- */
-.skills-grid {
+/* --- BIBLIOTECA DE CONHECIMENTO (LIVROS TÉCNICOS) --- */
+.library-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
   margin-top: 1.5rem;
 }
 
-.skill-category {
-  background: var(--bg-surface);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
-  padding: 2.2rem 2rem;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Detalhe de brasão sutil no topo de cada card de skill */
-.skill-category::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--italy-green), var(--accent-gold), var(--italy-red));
-  opacity: 0.7;
-}
-
-.skill-category:hover {
-  border-color: var(--border-glow);
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-}
-
-.skill-category h3 {
-  font-family: var(--font-display);
-  color: var(--accent-gold);
-  font-size: 1.25rem;
-  margin-bottom: 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.skill-category ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.skill-category li {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: rgba(6, 11, 22, 0.5);
-  padding: 0.6rem 0.9rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: all 0.25s ease;
-}
-
-.skill-category li:hover {
-  background: rgba(212, 175, 55, 0.06);
-  border-color: rgba(212, 175, 55, 0.2);
-  color: var(--italy-white);
-  transform: translateX(4px);
-}
-
-.skill-category li::before {
-  content: '✦';
-  color: var(--italy-green);
-  font-size: 0.75rem;
-}
-/* --- GRIMÓRIO DE PROJETOS & CONQUISTAS PROFISSIONAL --- */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.project-card {
-  background: var(--bg-surface);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
-  padding: 2.2rem 2rem;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-  display: flex;
-  flex-direction: column;
+.library-book {
+  padding: 1.8rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-/* Faixa tricolor italiana no topo de cada card de projeto */
-.project-card::after {
+.library-book::after {
   content: '';
   position: absolute;
   top: 0;
@@ -715,24 +612,194 @@ h2 span.sec-num {
   opacity: 0.85;
 }
 
-.project-card::before {
+.book-cover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-icon {
+  font-size: 2rem;
+}
+
+.book-cat-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-align: right;
+}
+
+.tag-active {
+  background: rgba(0, 146, 70, 0.12);
+  color: var(--italy-green);
+  border: 1px solid rgba(0, 146, 70, 0.35);
+}
+
+.tag-learning {
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--accent-gold);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.tag-course {
+  background: rgba(0, 102, 204, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(0, 102, 204, 0.4);
+}
+
+.tag-basic {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.book-info h3 {
+  font-family: var(--font-display);
+  color: var(--italy-white);
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.book-hint {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+}
+
+/* --- MODAL DO LIVRO TÉCNICO --- */
+.book-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 17, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.book-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.book-modal-card {
+  background: #0d1628;
+  border: 1px solid var(--accent-gold);
+  border-top: 4px solid var(--accent-gold);
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(212, 175, 55, 0.1);
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.book-modal-overlay.active .book-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent-gold);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--accent-gold);
+  color: var(--bg-deep);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.book-icon-large {
+  font-size: 2.8rem;
+}
+
+.modal-header h2 {
+  font-family: var(--font-display);
+  color: var(--italy-white);
+  font-size: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.modal-body-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.modal-section h4 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+}
+
+.modal-section p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- GRIMÓRIO DE PROJETOS & CONQUISTAS --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.project-card::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.12), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-card:hover {
-  border-color: var(--border-glow);
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--italy-green), var(--accent-gold), var(--italy-red));
+  opacity: 0.85;
 }
 
 .project-cat {
@@ -757,7 +824,31 @@ h2 span.sec-num {
   line-height: 1.35;
 }
 
-.project-card p {
+.project-problem-box {
+  background: rgba(6, 11, 22, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-left: 3px solid var(--accent-gold);
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.problem-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.project-problem-box p {
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0 !important;
+}
+
+.project-desc {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
@@ -810,6 +901,7 @@ h2 span.sec-num {
 .project-card:hover .link-detail {
   gap: 0.8rem;
 }
+
 /* --- BRASÃO / ESCUDO DE HONRA DINÂMICO --- */
 .knight-emblem-badge {
   display: flex;
@@ -1027,7 +1119,61 @@ h2 span.sec-num {
     gap: 2rem;
   }
 }
-/* --- RODAPÉ PROFISSIONAL ALINHADO --- */
+
+/* --- SCROLL REVEAL & SKILLS GRID (PARA PÁGINAS DE PROJETO) --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.skill-category {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  padding: 2.2rem 2rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.skill-category h3 {
+  font-family: var(--font-display);
+  color: var(--accent-gold);
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.skill-category ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.skill-category li {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  background: rgba(6, 11, 22, 0.5);
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* --- RODAPÉ PROFISSIONAL --- */
 .footer {
   text-align: center;
   padding: 3rem 2rem;
@@ -1040,57 +1186,4 @@ h2 span.sec-num {
   z-index: 1;
   background: rgba(4, 8, 17, 0.6);
   backdrop-filter: blur(8px);
-}
-/* --- ANIMAÇÃO DE SURGIMENTO DA DESCRIÇÃO DA HERO --- */
-.hero-desc-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.hero-desc-reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* --- CURSOR DE ESCRITA TÁTICO / PERGAMINHO --- */
-.typing-cursor-gold {
-  display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background-color: var(--accent-gold);
-  margin-left: 3px;
-  vertical-align: middle;
-  animation: blink-gold-cursor 0.7s infinite;
-}
-
-@keyframes blink-gold-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* --- FORÇAR O CURSOR PERSONALIZADO EM TODOS OS ELEMENTOS CLICÁVEIS --- */
-@media (pointer: fine) {
-  body, a, button, input, textarea, .project-card, .skill-category, [onclick] {
-    cursor: none !important;
-  }
-}
-
-/* Estado ativo do anel do cursor sobre elementos interativos (com a cor do brasão/Itália) */
-.cursor-ring.active {
-  width: 54px;
-  height: 54px;
-  border-color: var(--italy-green);
-  background-color: rgba(0, 146, 70, 0.12);
-  box-shadow: 0 0 15px rgba(0, 146, 70, 0.3);
-}
-/* --- REVELAÇÃO PROGRESSIVA DE PARÁGRAFOS --- */
-.paragraph-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.paragraph-reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }

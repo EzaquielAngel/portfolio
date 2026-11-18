@@ -11,7 +11,6 @@
 
   <!-- ILUSTRAÇÃO DE CAVALEIRO MEGALOMANÍACA AO FUNDO -->
   <svg class="knight-bg-watermark" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Brilho de Fundo do Elmo -->
     <defs>
       <radialGradient id="knightGlow" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stop-color="#d4af37" stop-opacity="0.25"/>
@@ -29,7 +28,6 @@
 
     <!-- Placa Frontal da Viseira e Fendas Oculares Táticas -->
     <rect x="88" y="105" width="124" height="26" rx="4" stroke="#d4af37" stroke-width="3" fill="rgba(212, 175, 55, 0.08)"/>
-    <!-- Fendas de Visão (Olhos do Cavaleiro) -->
     <line x1="102" y1="118" x2="138" y2="118" stroke="#009246" stroke-width="4" stroke-linecap="round"/>
     <line x1="162" y1="118" x2="198" y2="118" stroke="#ce2b37" stroke-width="4" stroke-linecap="round"/>
 
@@ -38,12 +36,11 @@
     <circle cx="150" cy="148" r="6" fill="#d4af37"/>
     <path d="M150 148V210" stroke="#d4af37" stroke-width="3"/>
 
-    <!-- Respiradouros da Armadura (Cota de Malha / Ventilação) -->
+    <!-- Respiradouros da Armadura -->
     <g fill="#d4af37" opacity="0.85">
       <circle cx="112" cy="180" r="3.5"/>
       <circle cx="125" cy="190" r="3.5"/>
       <circle cx="138" cy="180" r="3.5"/>
-      
       <circle cx="162" cy="180" r="3.5"/>
       <circle cx="175" cy="190" r="3.5"/>
       <circle cx="188" cy="180" r="3.5"/>
@@ -63,9 +60,10 @@
     <line x1="156" y1="105" x2="156" y2="131" stroke="#ce2b37" stroke-width="2"/>
   </svg>
 
-  <!-- CURSOR PERSONALIZADO -->
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
+  <!-- CURSOR TÁTICO PERSONALIZADO -->
+  <div class="cursor-ring" id="cursor-ring">
+    <div class="cursor-dot-inner"></div>
+  </div>
 
   <!-- ANIMAÇÃO DE ENTRADA: ESTANDARTE DO CAVALEIRO -->
   <div id="gate-overlay" class="gate-overlay">
@@ -80,6 +78,7 @@
     </div>
   </div>
 
+  <!-- BARRA DE NAVEGAÇÃO -->
   <header class="navbar">
     <a href="#" class="logo">
       <svg width="22" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +90,7 @@
     <nav>
       <ul class="nav-links">
         <li><a href="#sobre">O Cavaleiro</a></li>
-        <li><a href="#habilidades">Arsenal</a></li>
+        <li><a href="#habilidades">Biblioteca</a></li>
         <li><a href="#projetos">Conquistas</a></li>
         <li><a href="#contato">Convocação</a></li>
       </ul>
@@ -105,14 +104,12 @@
       <div class="hero-content">
         <span class="badge-tag">Engenharia da Computação &bull; Uningá</span>
         
-        <!-- Título Fixo e Imponente -->
         <h1 class="gold-shimmer" style="font-family: var(--font-display); font-size: clamp(2.3rem, 4.5vw, 3.6rem); font-weight: 800; margin: 1.2rem 0; letter-spacing: 1px;">
           Desenvolvedor Full Stack Júnior
         </h1>
 
-        <!-- Descrição com efeito de digitação estilo pergaminho tático -->
         <p id="hero-typewriter-desc" data-text="Estudante de Engenharia da Computação unindo uma sólida base lógica ao desenvolvimento web moderno. Em busca da primeira oportunidade profissional como Desenvolvedor Full Stack Júnior ou Estagiário para projetar soluções limpas, eficientes e orientadas a resultados." style="font-size: 1.1rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 2.2rem auto; line-height: 1.7; min-height: 85px;">
-          <!-- O texto será digitado automaticamente aqui pelo script -->
+          Estudante de Engenharia da Computação unindo uma sólida base lógica ao desenvolvimento web moderno. Em busca da primeira oportunidade profissional como Desenvolvedor Full Stack Júnior ou Estagiário para projetar soluções limpas, eficientes e orientadas a resultados.
         </p>
 
         <div class="hero-actions">
@@ -122,14 +119,13 @@
       </div>
     </section>
 
-  <!-- Seção Sobre / Perfil -->
+    <!-- Seção 01: Sobre / Perfil -->
     <section id="sobre" class="container section reveal">
       <div class="section-header">
         <h2><span class="sec-num">01</span> <span class="char-title-anim">Perfil Profissional & Formação</span></h2>
       </div>
       
       <div class="card profile-card">
-        
         <div class="knight-portrait-wrapper">
           <div class="knight-portrait-inner">
             <img src="assets/perfil.jpg" alt="Foto de Gabriel Cardoso Do Nascimento" onerror="this.src='https://via.placeholder.com/300x300/0d1628/d4af37?text=Gabriel+Cardoso'">
@@ -140,64 +136,44 @@
         </div>
 
         <div class="profile-text">
-          <!-- Parágrafo 1 com o teu nome integrado naturalmente -->
           <p class="paragraph-reveal" style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.2rem;">
             Olá! Sou <strong>Gabriel Cardoso Do Nascimento</strong>, estudante de <strong>Engenharia da Computação no Centro Universitário Ingá (Uningá)</strong>. Atualmente, estou a construir a minha base técnica e focado em dar o meu primeiro passo no mercado de tecnologia como <strong>Desenvolvedor Full Stack Júnior / Estagiário</strong>.
           </p>
 
-          <!-- Parágrafo 2 com atraso médio -->
           <p class="paragraph-reveal" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.2rem; transition-delay: 0.2s;">
             A minha jornada académica tem-me ensinado a valorizar a lógica estruturada, a resolução de problemas e a disciplina. Em paralelo aos estudos, dedico-me a aprender ferramentas modernas de desenvolvimento web (como JavaScript, Node.js e bases de dados) e a colocar a mão na massa com projetos práticos no GitHub.
           </p>
 
-          <!-- Parágrafo 3 com atraso final -->
           <p class="paragraph-reveal" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); transition-delay: 0.4s;">
             Busco uma oportunidade para integrar uma equipe onde possa aprender com profissionais experientes, absorver boas práticas de mercado e evoluir rápido, entregando muita dedicação, vontade de aprender e código limpo em cada entrega.
           </p>
         </div>
-
       </div>
     </section>
 
-    <!-- Seção de Competências Técnicas -->
+    <!-- Seção 02: Biblioteca de Conhecimento -->
     <section id="habilidades" class="container section reveal">
       <div class="section-header">
-        <h2><span class="sec-num">02</span> <span class="char-title-anim">Arsenal Técnico</span></h2>
+        <h2><span class="sec-num">02</span> <span class="char-title-anim">Biblioteca de Conhecimento & Grimório Técnico</span></h2>
       </div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Front-End</h3>
-          <ul>
-            <li>HTML5, CSS3 & JavaScript</li>
-            <li>Design Responsivo (Mobile First)</li>
-            <li>Animações & Interfaces Modernas</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Back-End & APIs</h3>
-          <ul>
-            <li>C#, Java, Python & PHP</li>
-            <li>APIs RESTful & Orientação a Objetos</li>
-            <li>Node.js & Express</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Banco de Dados & Ferramentas</h3>
-          <ul>
-            <li>MySQL & Linguagem SQL</li>
-            <li>Modelagem Relacional (DER/MER)</li>
-            <li>Git, GitHub & VS Code</li>
-          </ul>
-        </div>
+      
+      <p style="color: var(--text-muted); margin-bottom: 0.8rem; font-size: 1.05rem; line-height: 1.7;">
+        Conhecimentos que estou desenvolvendo por meio de estudos acadêmicos, experimentação e projetos pessoais.
+      </p>
+      <p style="color: var(--accent-gold); font-family: var(--font-mono); font-size: 0.88rem; margin-bottom: 2.2rem; letter-spacing: 0.5px;">
+        📖 Clique em qualquer tomo técnico abaixo para inspecionar o dossiê detalhado, a origem do aprendizado e a evidência nos projetos.
+      </p>
+
+      <div class="library-grid" id="library-grid">
+        <!-- Renderizado dinamicamente via js/main.js -->
       </div>
     </section>
 
-    <!-- Seção de Projetos -->
+    <!-- Seção 03: Projetos & Trajetória Prática -->
     <section id="projetos" class="container section reveal">
       <div class="section-header">
-        <h2><span class="sec-num">03</span> <span class="char-title-anim">Projetos & Conquistas</span></h2>
+        <h2><span class="sec-num">03</span> <span class="char-title-anim">Projetos & Trajetória Prática</span></h2>
         
-        <!-- Brasão de Honra Temático e Dinâmico -->
         <div class="knight-emblem-badge">
           <div class="emblem-shield-wrap">
             <svg class="emblem-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -214,17 +190,22 @@
             </svg>
           </div>
           <div class="emblem-text-wrap">
-            <span class="emblem-title">ARSENAL TÁTICO</span>
-            <span class="emblem-sub">Conquistas Reais</span>
+            <span class="emblem-title">ENGENHARIA APLICADA</span>
+            <span class="emblem-sub">Resultados Reais</span>
           </div>
         </div>
+      </div>
+
+      <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.7;">
+        Cada conquista abaixo soluciona um problema real de negócio ou desafio lógico complexo, refletindo a jornada acadêmica em Engenharia da Computação na Uningá.
+      </p>
 
       <div id="projects-container" class="projects-grid">
         <!-- Inserido dinamicamente via js/main.js -->
       </div>
     </section>
 
-    <!-- Seção de Contato / Convocação Executiva -->
+    <!-- Seção 04: Contato / Convocação Executiva -->
     <section id="contato" class="container section reveal">
       <div class="section-header">
         <h2><span class="sec-num">04</span> <span class="char-title-anim">Convocação & Alinhamento Tático</span></h2>
@@ -232,8 +213,6 @@
       
       <div class="card contact-exec-card">
         <div class="contact-grid">
-          
-          <!-- Coluna Esquerda: Posicionamento e Canais Diretos -->
           <div class="contact-info">
             <span class="exec-badge">Em busca da 1ª Oportunidade</span>
             <h3>Pronto para entrar em campo</h3>
@@ -257,7 +236,6 @@
             </div>
           </div>
 
-          <!-- Coluna Direita: Formulário Executivo de Envio -->
           <form class="convocation-form" action="https://formsubmit.co/g.c.nascimento.dev@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="Contato via Portfólio - Recrutamento">
             <input type="hidden" name="_captcha" value="false">
@@ -282,11 +260,9 @@
               Transmitir Convocação ✉
             </button>
           </form>
-
         </div>
       </div>
     </section>
- 
   </main>
 
   <footer class="footer">
