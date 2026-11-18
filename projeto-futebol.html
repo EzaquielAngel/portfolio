@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>European Nights | Gabriel Cardoso</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- CURSOR PERSONALIZADO -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ANIMAÇÃO DE ENTRADA: ESTANDARTE DO CAVALEIRO -->
+  <div id="gate-overlay" class="gate-overlay">
+    <div class="gate-left"></div>
+    <div class="gate-right"></div>
+    <div class="gate-lock">
+      <div class="crest-shield">
+        <div class="italy-ribbon"><span></span><span></span><span></span></div>
+        <span class="crest-initials">GN</span>
+      </div>
+      <span class="lock-text">CARREGANDO MOTOR TÁTICO</span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <svg width="22" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L2 5V12C2 18.5 6.3 24.3 12 25.5C17.7 24.3 22 18.5 22 12V5L12 1Z" stroke="#d4af37" stroke-width="2" fill="rgba(212,175,55,0.1)"/>
+        <path d="M12 5V21M7 11H17" stroke="#009246" stroke-width="2"/>
+      </svg>
+      Voltar ao Arsenal
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html#sobre">O Cavaleiro</a></li>
+        <li><a href="index.html#projetos">Conquistas</a></li>
+        <li><a href="index.html#contato">Convocação</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container section">
+    <span class="badge-tag">Simulador de Partidas &bull; Full-Stack &bull; MySQL</span>
+    
+    <h1 style="font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 1.2rem 0; color: var(--italy-white); line-height: 1.25;">
+      European Nights: Ultimate Career Edition
+    </h1>
+    <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1.05rem; line-height: 1.7;">
+      Um simulador imersivo de partidas e carreiras de futebol desenvolvido com foco em lógica de simulação em tempo real, gestão tática avançada e arquitetura de dados estruturada.
+    </p>
+
+    <!-- Seção de Demonstração: Painel da Aplicação -->
+    <div class="card reveal" style="margin-bottom: 2.5rem; text-align: center; padding: 2rem;">
+      <div class="section-header" style="margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-display); color: var(--accent-gold); font-size: 1.25rem;">
+          01. O Painel Tático e Motor de Simulação (Interface Principal)
+        </h3>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: left; line-height: 1.7;">
+        A interface foi concebida para refletir a imersão de um grande ecossistema esportivo. O painel centraliza a seleção de mandantes e visitantes, controle dinâmico de velocidade de simulação e parâmetros de arbitragem ao vivo.
+      </p>
+      <img src="assets/projeto-futebol.png" alt="European Nights Preview" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border-subtle); background: #040811; padding: 0.5rem;" onerror="this.src='https://via.placeholder.com/800x450/0d1628/d4af37?text=European+Nights+Preview'">
+      <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-gold); margin-top: 1rem;">
+        [ Painel principal com seleção de clubes, atributos dinâmicos (ATA/DEF) e controle de velocidade em tempo real ]
+      </p>
+    </div>
+
+    <!-- Exposição detalhada em linguagem acessível -->
+    <div class="card reveal" style="margin-bottom: 2.5rem;">
+      <h2 style="margin-bottom: 1.2rem;"><span class="sec-num">02</span> Arquitetura & Funcionalidades Principais</h2>
+      <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem;">
+        Desenvolver este simulador exigiu uma estrutura lógica robusta para processar eventos em tempo real, calcular probabilidades baseadas em atributos de equipe e manter a fluidez visual sem travamentos.
+      </p>
+      <ul style="color: var(--text-muted); line-height: 1.8; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <li><strong>Motor de Simulação Ao Vivo (90' + VAR + Subs):</strong> Processamento dinâmico de eventos de partidas, calculando atributos de ataque (ATA) e defesa (DEF) quadro a quadro.</li>
+        <li><strong>Controle de Velocidade Dinâmico:</strong> Permite ao utilizador ajustar a velocidade da simulação de 0.5x até 3.0x com atualização fluida de interface.</li>
+        <li><strong>Persistência com MySQL:</strong> Estrutura de banco de dados relacional projetada para guardar estados de equipas, plantéis, estatísticas de atletas e dados de carreira.</li>
+        <li><strong>Gestão de Elencos & Mercado:</strong> Módulos dedicados para gerir plantéis, táticas de equipa, estádios e transferências.</li>
+      </ul>
+    </div>
+
+    <!-- Grid Detalhado de Tecnologias -->
+    <div class="skills-grid reveal" style="margin-bottom: 2.5rem;">
+      <div class="skill-category">
+        <h3>Lógica de Simulação & Eventos</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
+          O núcleo do motor de jogo lida com o cálculo probabilístico e o fluxo temporal das partidas:
+        </p>
+        <ul>
+          <li><strong>Cálculo de Força (ATA vs DEF):</strong> Algoritmos de balanceamento de estatísticas.</li>
+          <li><strong>Gatilhos de VAR e Substituições:</strong> Eventos randômicos controlados por estado.</li>
+          <li><strong>Gestão de Placar e Súmula:</strong> Atualização síncrona em tempo real.</li>
+        </ul>
+      </div>
+
+      <div class="skill-category">
+        <h3>Tecnologias Aplicadas</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
+          Para estruturar todo o ecossistema técnico e visual, foram empregadas ferramentas modernas:
+        </p>
+        <ul>
+          <li><strong>JavaScript (ES6+) & Node.js:</strong> Lógica central e servidor de rotas.</li>
+          <li><strong>MySQL:</strong> Banco de dados relacional para carreiras e elencos.</li>
+          <li><strong>HTML5 & CSS3:</strong> Layout responsivo com variáveis customizadas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-actions" style="justify-content: flex-start;">
+      <a href="index.html" class="btn btn-outline">Voltar ao Portfólio</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Gabriel Cardoso Do Nascimento &bull; Cavaliere del Codice</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Estandarte de Entrada
+      const gateOverlay = document.getElementById('gate-overlay');
+      if (gateOverlay) {
+        setTimeout(() => gateOverlay.classList.add('open'), 250);
+      }
+
+      // 2. Cursor Personalizado
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('mousemove', (e) => {
+          dot.style.left = `${e.clientX}px`;
+          dot.style.top = `${e.clientY}px`;
+          ring.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 180, fill: 'forwards' });
+        });
+        document.addEventListener('mouseover', (e) => {
+          if (e.target.closest('a, button, .card, .skill-category')) {
+            ring.classList.add('active');
+          } else {
+            ring.classList.remove('active');
+          }
+        });
+      }
+
+      // 3. Efeito Spotlight
+      document.addEventListener('mousemove', (e) => {
+        document.querySelectorAll('.card, .skill-category').forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+
+      // 4. Scroll Reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

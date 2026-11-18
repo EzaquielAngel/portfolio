@@ -51,46 +51,84 @@ body {
   50% { transform: translateY(-14px) rotate(-1.5deg); }
 }
 
-/* --- CURSOR PERSONALIZADO (Desktop) --- */
+/* --- CURSOR TÁTICO: LÂMINA / RETÍCULO DE ENGENHARIA E CAVALARIA (BLINDADO) --- */
 @media (pointer: fine) {
-  body, a, button, input, textarea, .project-card {
-    cursor: none;
+  /* Esconde o cursor nativo em absolutamente tudo na página */
+  body, html, a, button, input, textarea, .project-card, .skill-category, [onclick], * {
+    cursor: none !important;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    pointer-events: none !important; /* Impede que o cursor interaja fisicamente com os elementos abaixo */
+    transform: translate3d(0, 0, 0);
+    margin-left: -14px;
+    margin-top: -14px;
+    z-index: 999999;
+    transition: width 0.2s ease, height 0.2s ease, transform 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Impede que filhos do cursor bloqueiem o evento do rato */
+  .cursor-ring * {
+    pointer-events: none !important;
+  }
+
+  /* Desenha a lâmina/cruz tática geométrica */
+  .cursor-ring::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 24px;
+    background: linear-gradient(to bottom, #009246, #fff, #ce2b37);
+    box-shadow: 0 0 6px var(--accent-gold);
+  }
+
+  .cursor-ring::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: linear-gradient(to right, #009246, #fff, #ce2b37);
+    box-shadow: 0 0 6px var(--accent-gold);
+  }
+
+  /* Núcleo central dourado */
+  .cursor-dot-inner {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-gold);
+  }
+
+  /* Estado ativo ao passar por cima de elementos interativos */
+  .cursor-ring.active {
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    margin-top: -22px;
+    transform: rotate(45deg) scale(1.1);
+  }
+  
+  .cursor-ring.active::before,
+  .cursor-ring.active::after {
+    background: var(--accent-gold);
+    box-shadow: 0 0 12px var(--accent-gold);
   }
 }
 
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background-color: var(--accent-gold);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(212, 175, 55, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.cursor-ring.active {
-  width: 54px;
-  height: 54px;
-  border-color: var(--italy-green);
-  background-color: rgba(0, 146, 70, 0.1);
+@media (pointer: coarse) {
+  .cursor-ring {
+    display: none !important;
+  }
 }
 
 /* --- ANIMAÇÃO DE ENTRADA: O ESTANDARTE DO CAVALEIRO --- */

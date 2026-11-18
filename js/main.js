@@ -1,6 +1,13 @@
 // --- DADOS DOS PROJETOS (GRIMÓRIO / CONQUISTAS) ---
 const projects = [
   {
+    title: "European Nights - Ultimate Career Edition",
+    category: "Simulador de Partidas • Full-Stack • MySQL",
+    description: "Simulador avançado de partidas de futebol com gestão tática, simulação ao vivo (90'+VAR+Subs), seleção de clubes europeus e persistência em MySQL.",
+    techs: ["JavaScript", "Node.js", "MySQL", "HTML5", "CSS3", "Engine Tática"],
+    link: "projeto-futebol.html"
+  },
+  {
     title: "Sistema de Controle de Estoque para Restaurante (Cozinha Japonesa)",
     category: "Full-Stack • Banco de Dados • Node.js",
     description: "Desenvolvido do zero para resolver gargalos operacionais em gastronomia, integrando fichas técnicas e controle transacional de insumos.",
@@ -110,25 +117,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Cursor Personalizado (Desktop)
-  const dot = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
-    window.addEventListener('mousemove', (e) => {
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      ring.animate({
-        left: `${e.clientX}px`,
-        top: `${e.clientY}px`
-      }, { duration: 180, fill: 'forwards' });
-    });
+  // ==========================================
+  // 7. CURSOR TÁTICO PERSONALIZADO (Otimizado e Sem Peso)
+  // ==========================================
+  const cursorRing = document.querySelector('.cursor-ring');
+  
+  if (cursorRing && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let animationFrameId = null;
 
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('a, button, input, textarea, .project-card, .skill-category')) {
-        ring.classList.add('active');
-      } else {
-        ring.classList.remove('active');
+    // Captura as coordenadas do mouse de forma leve
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Utiliza requestAnimationFrame para renderizar perfeitamente alinhado com a taxa de atualização do monitor
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(() => {
+          cursorRing.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+          animationFrameId = null;
+        });
       }
+    }, { passive: true });
+
+    // Reação elegante ao passar por cima de elementos interativos
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .project-card, [onclick], .skill-category');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('active'));
     });
   }
 
@@ -140,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
       card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
     });
-  });
+  }, { passive: true });
 
   // 9. Scroll Reveal (Aparecer suave ao rolar a página)
   const reveals = document.querySelectorAll('.reveal');
@@ -153,38 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12 });
 
   reveals.forEach((el) => observer.observe(el));
-});
 
-// Efeito de Digitação Progressiva na Descrição do Cavaleiro (Hero)
-  const typewriterDesc = document.getElementById('hero-typewriter-desc');
-  if (typewriterDesc) {
-    const textToType = typewriterDesc.getAttribute('data-text') || '';
-    typewriterDesc.textContent = ''; // Limpa o conteúdo inicial
-    
-    // Cria um cursor de escrita temático
-    const cursor = document.createElement('span');
-    cursor.className = 'typing-cursor-gold';
-    typewriterDesc.appendChild(cursor);
-
-    let charIndex = 0;
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const typingInterval = setInterval(() => {
-          if (charIndex < textToType.length) {
-            // Insere a letra antes do cursor
-            typewriterDesc.insertBefore(document.createTextNode(textToType.charAt(charIndex)), cursor);
-            charIndex++;
-          } else {
-            clearInterval(typingInterval);
-            // Remove o cursor após terminar de escrever
-            setTimeout(() => cursor.remove(), 1200);
-          }
-        }, 18); // Velocidade da digitação (quanto menor, mais rápido)
-      }, 500); // Atraso inicial para iniciar a escrita
-    });
-  }
-  
-  // Revelação fluida e sequencial dos parágrafos da biografia
+  // 10. Revelação sequencial dos parágrafos da biografia
   const paragraphElements = document.querySelectorAll('.paragraph-reveal');
   if (paragraphElements.length > 0) {
     const observerOptions = {
@@ -205,3 +192,30 @@ document.addEventListener('DOMContentLoaded', () => {
       paragraphObserver.observe(el);
     });
   }
+});
+
+// Efeito de Digitação Progressiva na Descrição do Cavaleiro (Hero)
+const typewriterDesc = document.getElementById('hero-typewriter-desc');
+if (typewriterDesc) {
+  const textToType = typewriterDesc.getAttribute('data-text') || '';
+  typewriterDesc.textContent = ''; 
+  
+  const cursor = document.createElement('span');
+  cursor.className = 'typing-cursor-gold';
+  typewriterDesc.appendChild(cursor);
+
+  let charIndex = 0;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const typingInterval = setInterval(() => {
+        if (charIndex < textToType.length) {
+          typewriterDesc.insertBefore(document.createTextNode(textToType.charAt(charIndex)), cursor);
+          charIndex++;
+        } else {
+          clearInterval(typingInterval);
+          setTimeout(() => cursor.remove(), 1200);
+        }
+      }, 18); 
+    }, 500); 
+  });
+}
